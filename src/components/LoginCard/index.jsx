@@ -1,8 +1,36 @@
 import { useState } from "react";
 import NetflixLogo from "./../../assets/logo/netflix.png";
 import { Link } from "react-router-dom";
+import { signIn, signUp } from "../../firebase";
+import toast, { Toaster } from "react-hot-toast";
+
 export default function LoginCard() {
   const [signState, setSignState] = useState("Oturum Aç");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [username, setUsername] = useState("");
+  const notify = (mess) => toast.error(mess);
+
+  const user_auth = async (e) => {
+    e.preventDefault();
+    if (email === "" || password === "") {
+      notify("Lütfen tüm alanları doldurunuz.");
+    } else {
+      try {
+        if (signState === "Oturum Aç") {
+          await signIn(email, password);
+        } else {
+          await signUp(username, email, password);
+        }
+      } catch (error) {
+        setUsername("");
+        setPassword("");
+        setEmail("");
+        console.log(error);
+      }
+    }
+  };
+
   return (
     <>
       <div className=" z-10 relative h-screen py-7 px-8p bg-[url('https://assets.nflxext.com/ffe/siteui/vlv3/dd4dfce3-1a39-4b1a-8e19-b7242da17e68/5b967f31-0270-4902-a3d8-2c619409b86d/TR-tr-20240527-popsignuptwoweeks-perspective_alpha_website_large.jpg')] bg-center ">
@@ -12,6 +40,7 @@ export default function LoginCard() {
           <h1 className="text-white text-4xl font-bold tracking-normal mb-10 ">
             {signState}
           </h1>
+          <Toaster error />
           <form className=" w-[315px] flex flex-col gap-y-4">
             {signState === "Kayıt ol" ? (
               <>
@@ -20,6 +49,8 @@ export default function LoginCard() {
                     required
                     className="w-full h-[56px] px-4 pt-3  bg-input  text-white border rounded-md border-gray-500 peer"
                     type="text"
+                    value={username}
+                    onChange={(e) => setUsername(e.target.value)}
                   />
                   <span className="text-white text-opacity-70 flex tracking-wide items-center justify-center top-0  absolute transition-all h-full left-0 px-4  peer-focus:text-xs peer-focus:h-7 peer-valid:text-xs peer-valid:h-7 ">
                     Kullanıcı Adı
@@ -30,6 +61,8 @@ export default function LoginCard() {
                     required
                     className="w-full h-[56px] px-4 pt-3  bg-input  text-white border rounded-md border-gray-500 peer"
                     type="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
                   />
                   <span className="text-white text-opacity-70 flex tracking-wide items-center justify-center top-0  absolute transition-all h-full left-0 px-4  peer-focus:text-xs peer-focus:h-7 peer-valid:text-xs peer-valid:h-7 ">
                     E-posta
@@ -40,6 +73,8 @@ export default function LoginCard() {
                     required
                     className="w-full h-[56px] px-4 pt-3  bg-input  text-white border rounded-md border-gray-500 peer"
                     type="password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
                   />
                   <span className="text-white text-opacity-70 flex tracking-wide items-center justify-center top-0  absolute transition-all h-full left-0 px-4  peer-focus:text-xs peer-focus:h-7 peer-valid:text-xs peer-valid:h-7 ">
                     Parola
@@ -53,6 +88,8 @@ export default function LoginCard() {
                     required
                     className="w-full h-[56px] px-4 pt-3  bg-input  text-white border rounded-md border-gray-500 peer"
                     type="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
                   />
                   <span className="text-white text-opacity-70 flex tracking-wide items-center justify-center top-0  absolute transition-all h-full left-0 px-4  peer-focus:text-xs peer-focus:h-7 peer-valid:text-xs peer-valid:h-7 ">
                     E-posta
@@ -63,6 +100,8 @@ export default function LoginCard() {
                     required
                     className="w-full h-[56px] px-4 pt-3  bg-input  text-white border rounded-md border-gray-500 peer"
                     type="password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
                   />
                   <span className="text-white text-opacity-70 flex tracking-wide items-center justify-center top-0  absolute transition-all h-full left-0 px-4  peer-focus:text-xs peer-focus:h-7 peer-valid:text-xs peer-valid:h-7 ">
                     Parola
@@ -71,10 +110,17 @@ export default function LoginCard() {
               </>
             )}
 
-            <button className=" w-full text-white font-semibold  h-10 bg-netflix rounded-md">
+            <button
+              onClick={user_auth}
+              type="submit"
+              className=" w-full text-white font-semibold  h-10 bg-netflix rounded-md"
+            >
               {signState}
             </button>
-            <a className="text-white text-center my-2 hover:underline transition" href="#">
+            <a
+              className="text-white text-center my-2 hover:underline transition"
+              href="#"
+            >
               Parolayı mı unuttunuz?{" "}
             </a>
             <div className="text-white flex flex-col gap-y-4">
@@ -109,7 +155,10 @@ export default function LoginCard() {
               <p className="text-white  text-xs tracking-wide text-opacity-70">
                 Bu sayfa robot olmadığınızı kanıtlamak için Google reCAPTCHA
                 tarafından korunuyor.
-                <a href="#" className=" text-blue-500 transition hover:underline">
+                <a
+                  href="#"
+                  className=" text-blue-500 transition hover:underline"
+                >
                   Daha fazla bilgi alın.
                 </a>
               </p>
