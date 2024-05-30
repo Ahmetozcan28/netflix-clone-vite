@@ -4,7 +4,11 @@ export default {
   theme: {
     extend: {
       spacing: {
-        "8p": "8%",
+        "8p": "18%",
+      },
+      colors: {
+        input: "rgba(22, 22, 22, 0.7)",
+        netflix: "#e50914",
       },
     },
   },
