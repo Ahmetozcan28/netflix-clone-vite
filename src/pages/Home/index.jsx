@@ -1,9 +1,13 @@
 import React from "react";
 import { logout } from "../../firebase";
+import Navbar from "../../components/navbar";
 export default function Home() {
   return (
     <>
-      <div>Home</div>
+      <div className="sticky top-0">
+        <Navbar  />
+      </div>
+      <div className="h-[1000px]"></div>
       <button
         onClick={() => {
           logout();
