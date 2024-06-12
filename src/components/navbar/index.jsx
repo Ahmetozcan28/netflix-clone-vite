@@ -10,7 +10,7 @@ import { logout } from "../../firebase";
 
 export default function Navbar() {
   return (
-    <div className="px-14 h-[68px] bg-black flex items-center justify-between ">
+    <div className="px-14 h-[68px] flex items-center justify-between ">
       <div className="flex items-center gap-x-10">
         <a href="#">
           <img src={netflixLogo} alt="Netflix" className="w-[92px] h-[25px]" />
@@ -36,7 +36,7 @@ export default function Navbar() {
           </li>
         </ul>
       </div>
-      <div className="flex text-white items-center gap-x-5">
+      <div className="flex text-white items-center gap-x-5 ">
         <div className="w-6 h-6 scale-105">
           <img src={search} />
         </div>
