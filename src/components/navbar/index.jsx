@@ -1,7 +1,5 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import netflixLogo from "../../assets/logo/netflix.png";
-import { GoSearch } from "react-icons/go";
-import { IoNotificationsOutline } from "react-icons/io5";
 import { FaCaretDown } from "react-icons/fa";
 import profilePicture from "../../assets/profile/profilePicture.png";
 import search from "../../assets/netflix-svg/search.svg";
@@ -9,8 +7,25 @@ import notification from "../../assets/netflix-svg/notification.svg";
 import { logout } from "../../firebase";
 
 export default function Navbar() {
+  const [bgColor, setBgColor] = useState("transparent");
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 60) {
+        setBgColor("black");
+      } else {
+        setBgColor("transparent");
+      }
+    };
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
   return (
-    <div className="px-14 h-[68px] flex items-center justify-between ">
+    <div
+      className={`px-14 h-[68px] flex items-center justify-between fixed w-full z-10 bg-${bgColor} transition-all duration-1000`}
+    >
       <div className="flex items-center gap-x-10">
         <a href="#">
           <img src={netflixLogo} alt="Netflix" className="w-[92px] h-[25px]" />
