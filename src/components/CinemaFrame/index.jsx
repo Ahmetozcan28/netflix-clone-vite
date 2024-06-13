@@ -23,7 +23,7 @@ export default function CinemaFrame() {
       <img className="w-full " src={banner} alt="banner-ragnarok" />
       <div className=" w-full absolute pl-6p bottom-0 top-1/2 -translate-y-1/2">
         <img
-          className={`w-4/5 max-w-[420px] mb-[30px] transition-all duration-1000 ${
+          className={`w-4/5 max-w-[420px] transition-all duration-1000 ${
             isScaled
               ? "scale-100 translate-y-20"
               : " scale-150 translate-x-28 mb-16 "
