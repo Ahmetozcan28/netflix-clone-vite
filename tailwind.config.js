@@ -5,11 +5,12 @@ export default {
     extend: {
       spacing: {
         "8p": "18%",
-        "6p" : "6%",
+        "6p": "6%",
       },
       colors: {
         input: "rgba(22, 22, 22, 0.7)",
         netflix: "#e50914",
+        navbar: "#0b0b0b",
       },
     },
   },
