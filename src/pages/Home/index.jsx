@@ -10,6 +10,7 @@ import film2 from "../../assets/film/film2.jpg";
 import film3 from "../../assets/film/film3.webp";
 import film4 from "../../assets/film/film4.jpg";
 import film5 from "../../assets/film/film5.jpg";
+import FilmCard from "../../components/FilmCard";
 export default function Home() {
   const settings = {
     dots: true,
@@ -26,103 +27,22 @@ export default function Home() {
       <div className="">
         <Navbar />
         <CinemaFrame />
-        <div className="px-7 mx-auto -translate-y-60">
-          <h1 className="text-2xl font-semibold mb-2">Sıradaki Önerimiz</h1>
-          <Slider className="" {...settings}>
-            <div>
-              <img
-                className="h-[170px] w-[300px] object-cover bg-black rounded-md"
-                src={film}
-                alt="film"
-              />
-            </div>
-            <div>
-              {" "}
-              <img
-                className="h-[170px] w-[300px] object-cover bg-black rounded-md "
-                src={film2}
-                alt="film"
-              />
-            </div>
-            <div>
-              <img
-                className="h-[170px] w-[300px] object-cover bg-black rounded-md  "
-                src={film3}
-                alt="film"
-              />
-            </div>
-            <div>
-              <img
-                className="h-[170px] w-[300px] object-cover bg-black rounded-md "
-                src={film4}
-                alt="film"
-              />
-            </div>
-            <div>
-              <img
-                className="h-[170px] w-[300px] object-cover  bg-black rounded-md "
-                src={film5}
-                alt="film"
-              />
-            </div>
-            <div>
-              <img
-                className="h-[170px] w-[300px] object-cover bg-black rounded-md  "
-                src={film3}
-                alt="film"
-              />
-            </div>
-          </Slider>
+        <div className="flex flex-col gap-y-20">
+          <div>
+            <FilmCard title={"Sıradaki Önerimiz"} filmPlayList={"now_playing"} />
+          </div>
+          <div>
+            <FilmCard title={"Komediler"} filmPlayList={"top_rated"} />
+          </div>
+          <div>
+            <FilmCard title={"Listem"} filmPlayList={"popular"} />
+          </div>
+          <div>
+            <FilmCard title={"Bugün Sizin İçin Seçtiklerimiz"} filmPlayList={"upcoming"} />
+          </div>
         </div>
-        <div className="px-7 mx-auto -translate-y-[140px] ">
-          <h1 className="text-2xl font-semibold mb-2">Komediler</h1>
-          <Slider className="" {...settings}>
-            <div>
-              <img
-                className="h-[170px] w-[300px] object-cover bg-black rounded-md"
-                src={film}
-                alt="film"
-              />
-            </div>
-            <div>
-              {" "}
-              <img
-                className="h-[170px] w-[300px] object-cover bg-black rounded-md "
-                src={film2}
-                alt="film"
-              />
-            </div>
-            <div>
-              <img
-                className="h-[170px] w-[300px] object-cover bg-black rounded-md  "
-                src={film3}
-                alt="film"
-              />
-            </div>
-            <div>
-              <img
-                className="h-[170px] w-[300px] object-cover bg-black rounded-md "
-                src={film4}
-                alt="film"
-              />
-            </div>
-            <div>
-              <img
-                className="h-[170px] w-[300px] object-cover  bg-black rounded-md "
-                src={film5}
-                alt="film"
-              />
-            </div>
-            <div>
-              <img
-                className="h-[170px] w-[300px] object-cover bg-black rounded-md  "
-                src={film3}
-                alt="film"
-              />
-            </div>
-          </Slider>
-        </div>
-        <div className="h-[1000px]"></div>
+
+        <div className="h-[300px]"></div>
 
         <button
           onClick={() => {
